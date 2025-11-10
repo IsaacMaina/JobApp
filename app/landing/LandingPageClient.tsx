@@ -20,7 +20,7 @@ export default function LandingPageClient({
     <div className="relative bg-gradient-to-r from-red-900 to-red-700 text-white py-20 px-8 rounded-lg shadow-xl mb-12 animate-fade-in-down">
       <div className="max-w-3xl mx-auto text-center">
         <h1 className="text-5xl font-extrabold mb-4 leading-tight">
-          Find Your Dream Job Today
+          Find Your Dream Job Today.
         </h1>
         <p className="text-xl mb-2 opacity-90">"{randomQuote.quote}"</p>
         <p className="text-lg font-semibold opacity-80">

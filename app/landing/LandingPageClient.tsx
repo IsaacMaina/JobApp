@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Search from "@/components/pageComponents/search";
+import { useSession } from "next-auth/react";
 
 export default function LandingPageClient({
   searchParams,
@@ -11,6 +12,7 @@ export default function LandingPageClient({
   randomQuote: { quote: string; author: string };
 }) {
   const router = useRouter();
+  const { status } = useSession();
 
   const handleSearch = (queryString: string) => {
     router.push(`/landing?${queryString}`);
@@ -33,6 +35,11 @@ export default function LandingPageClient({
             onSearch={handleSearch}
           />
         </div>
+        {status !== "authenticated" && (
+          <p className="text-lg mt-4">
+            Log in to post new jobs, and apply to existing ones.
+          </p>
+        )}
       </div>
     </div>
   );

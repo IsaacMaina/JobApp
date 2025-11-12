@@ -1,12 +1,12 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { tableName: string; id: string } }
+  req: NextRequest,
+  context: { params: { tableName: string; id: string } }
 ) {
   const session = await getServerSession(authOptions);
 
@@ -14,7 +14,7 @@ export async function DELETE(
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const { tableName, id } = params;
+  const { tableName, id } = context.params;
 
   try {
     await prisma.$executeRawUnsafe(
@@ -29,8 +29,8 @@ export async function DELETE(
 }
 
 export async function PUT(
-  req: Request,
-  { params }: { params: { tableName: string; id: string } }
+  req: NextRequest,
+  context: { params: { tableName:string; id: string } }
 ) {
   const session = await getServerSession(authOptions);
 
@@ -38,7 +38,7 @@ export async function PUT(
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const { tableName, id } = params;
+  const { tableName, id } = context.params;
   const body = await req.json();
 
   if (tableName === "User" && body.password) {

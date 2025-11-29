@@ -80,14 +80,14 @@ export function LoadingButtonLink({
     <Link
       href={href}
       onClick={handleClick}
-      className={className}
+      className="inline-block" // Ensure link behaves correctly with button
       {...props}
     >
       <Button
         variant={variant}
         size={size}
         disabled={isLoading}
-        className={cn("flex items-center justify-center gap-2", className)}
+        className={cn(className, "flex items-center justify-center gap-2")}
       >
         {isLoading ? (
           <>

@@ -5,6 +5,7 @@ import Footer from "@/components/pageComponents/footer";
 import NavBarWrapper from "@/components/pageComponents/NavBarWrapper";
 import { Toaster, toast } from "sonner";
 import { useEffect } from "react";
+import NavigationProgressBar from "@/components/ui/navigation-progress";
 
 export default function LayoutClientWrapper({
   children,
@@ -28,6 +29,7 @@ export default function LayoutClientWrapper({
 
   return (
     <div className="flex flex-col justify-between items-center text-xs md:text-sm px-4 sm:px-8 md:px-12 bg-amber-50">
+      <NavigationProgressBar />
       {!hideAuthPagesElements && <NavBarWrapper />} {/* Use combined condition */}
       {children}
       {!hideAuthPagesElements && <Footer />} {/* Use combined condition */}

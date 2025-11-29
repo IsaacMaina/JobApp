@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import UserAccountNav from "./UserAccountNav";
 import { useSession } from "next-auth/react";
+import { LoadingButtonLink } from "../ui/loading-link";
 
 // The main navigation bar for the site. It's sticky, so it stays at the top of the page as you scroll.
 export default function NavBar({ pathname }: { pathname: string }) {
@@ -56,9 +57,13 @@ export default function NavBar({ pathname }: { pathname: string }) {
           {session ? (
             <>
               <li>
-                <Button className="hover:text-red-900 hover:bg-amber-50 hover:border-2 border-red-900 transition-colors duration-200 cursor-pointer w-fit px-4 py-2  bg-red-900 text-amber-50">
-                  <Link href="/jobs/post">post Job</Link>
-                </Button>
+                <LoadingButtonLink
+                  href="/jobs/post"
+                  variant="default"
+                  className="hover:text-red-900 hover:bg-amber-50 hover:border-2 border-red-900 transition-colors duration-200 cursor-pointer w-fit px-4 py-2 bg-red-900 text-amber-50"
+                >
+                  post Job
+                </LoadingButtonLink>
               </li>
               <li>
                 <UserAccountNav user={session.user} />
@@ -67,15 +72,22 @@ export default function NavBar({ pathname }: { pathname: string }) {
           ) : (
             <>
               <li>
-                <Button className="hover:text-red-900 hover:bg-amber-50 hover:border-2 border-red-900 transition-colors duration-200 cursor-pointer w-fit px-4 py-2  bg-red-900 text-amber-50">
-                  <Link href="/api/auth/signin">Login</Link>
-                </Button>
+                <LoadingButtonLink
+                  href="/api/auth/signin"
+                  variant="default"
+                  className="hover:text-red-900 hover:bg-amber-50 hover:border-2 border-red-900 transition-colors duration-200 cursor-pointer w-fit px-4 py-2 bg-red-900 text-amber-50"
+                >
+                  Login
+                </LoadingButtonLink>
               </li>
               <li>
-                <Button className="hover:text-red-900 hover:bg-amber-50 hover:border-2 border-red-900 transition-colors duration-200 cursor-pointer w-fit px-4 py-2  bg-red-900 text-amber-50">
-                  {" "}
-                  <Link href="/auth/register">Register</Link>
-                </Button>
+                <LoadingButtonLink
+                  href="/auth/register"
+                  variant="default"
+                  className="hover:text-red-900 hover:bg-amber-50 hover:border-2 border-red-900 transition-colors duration-200 cursor-pointer w-fit px-4 py-2 bg-red-900 text-amber-50"
+                >
+                  Register
+                </LoadingButtonLink>
               </li>
             </>
           )}

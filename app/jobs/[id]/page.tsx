@@ -21,6 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import JobDetailSkeleton from "@/components/pageComponents/JobDetailSkeleton";
 import { formatSalary } from "@/lib/utils";
 import { deleteJob } from "@/lib/actions/jobActions";
+import DeleteJobButton from "@/components/pageComponents/DeleteJobButton";
 import type { Metadata } from "next";
 
 type Props = {
@@ -161,22 +162,7 @@ async function JobDetailContent({ id }: { id: string }) {
                       <EditIcon className="w-4 h-4" /> Edit Job
                     </Button>
                   </Link>
-                  <form
-                    action={async () => {
-                      "use server";
-                      await deleteJob(job.id);
-                    }}
-                    className="flex-1"
-                  >
-                    <input type="hidden" name="jobId" value={job.id} />
-                    <Button
-                      type="submit"
-                      variant="destructive"
-                      className="w-full bg-red-500 text-white hover:bg-red-600 flex items-center justify-center gap-2"
-                    >
-                      <Trash2Icon className="w-4 h-4" /> Delete Job
-                    </Button>
-                  </form>
+                  <DeleteJobButton jobId={job.id} />
                 </div>
                 {job.applications && job.applications.length > 0 && (
                   <div className="mt-8">

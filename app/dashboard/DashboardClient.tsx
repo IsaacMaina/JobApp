@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"; // Added useEffect
 import { Button } from "@/components/ui/button";
+import LoadingButton from "@/components/ui/loading-button";
 import {
   Dialog,
   DialogContent,
@@ -171,14 +172,14 @@ export default function DashboardClient({
 
                   <div className="mt-4 flex flex-col space-y-2">
                     <Link href={`/jobs/${job.id}`} className="flex-1">
-                      <Button
+                      <LoadingButton
                         className="w-full bg-red-900 text-amber-50 hover:bg-red-800 flex items-center justify-center gap-2"
                         onClick={async () => {
                           await markApplicationsAsViewed(job.id);
                         }}
                       >
                         View Details <ArrowRightIcon className="w-4 h-4" />
-                      </Button>
+                      </LoadingButton>
                     </Link>
                   </div>
                 </CardContent>
@@ -189,13 +190,13 @@ export default function DashboardClient({
       )}
       {jobs.length > INITIAL_DISPLAY_LIMIT && (
         <div className="flex justify-center mt-6">
-          <Button
+          <LoadingButton
             variant="outline"
             onClick={() => setShowAllPostedJobs(!showAllPostedJobs)}
             className="border-red-900 text-red-900 hover:bg-red-50"
           >
             {showAllPostedJobs ? "Show Less" : "View More Posted Jobs"}
-          </Button>
+          </LoadingButton>
         </div>
       )}
 
@@ -269,9 +270,9 @@ export default function DashboardClient({
                 )}
                 <div className="mt-4">
                   <Link href={`/jobs/${job.id}`}>
-                    <Button className="w-full bg-red-900 text-amber-50 hover:bg-red-800 flex items-center justify-center gap-2">
+                    <LoadingButton className="w-full bg-red-900 text-amber-50 hover:bg-red-800 flex items-center justify-center gap-2">
                       View Details <ArrowRightIcon className="w-4 h-4" />
-                    </Button>
+                    </LoadingButton>
                   </Link>
                 </div>
               </CardContent>
@@ -281,13 +282,13 @@ export default function DashboardClient({
       )}
       {appliedJobs.length > INITIAL_DISPLAY_LIMIT && (
         <div className="flex justify-center mt-6">
-          <Button
+          <LoadingButton
             variant="outline"
             onClick={() => setShowAllAppliedJobs(!showAllAppliedJobs)}
             className="border-red-900 text-red-900 hover:bg-red-50"
           >
             {showAllAppliedJobs ? "Show Less" : "View More Applied Jobs"}
-          </Button>
+          </LoadingButton>
         </div>
       )}
     </div>

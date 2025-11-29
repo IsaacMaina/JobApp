@@ -3,8 +3,7 @@ import prisma from "@/lib/prisma";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { formatDistanceToNowStrict } from "date-fns";
 import { Badge } from "@/components/ui/badge";
-import { MapPinIcon, BriefcaseIcon, Building2Icon, ArrowRightIcon } from "lucide-react";
-import Link from "next/link";
+import { MapPinIcon, BriefcaseIcon, Building2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Prisma } from "@prisma/client";
 import {
@@ -16,6 +15,7 @@ import {
 import { Suspense } from "react";
 import JobsSkeleton from "@/components/pageComponents/JobsSkeleton";
 import { formatSalary } from "@/lib/utils";
+import ViewDetailsButton from "@/components/pageComponents/ViewDetailsButton";
 
 // ✅ FIX: Await searchParams — it's a Promise in Next.js 14+ App Router
 export default async function LandingPage(props: {
@@ -128,11 +128,7 @@ export default async function LandingPage(props: {
                       Salary: {formatSalary(job.salary)}
                     </p>
                   )}
-                  <Link href={`/jobs/${job.id}`}>
-                    <Button className="w-full bg-red-900 text-amber-50 hover:bg-red-800 flex items-center justify-center gap-2">
-                      View Details <ArrowRightIcon className="w-4 h-4" />
-                    </Button>
-                  </Link>
+                  <ViewDetailsButton jobId={job.id} />
                 </CardContent>
               </Card>
             ))}
